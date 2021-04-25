@@ -21,7 +21,7 @@ class Bert(BertPreTrainedModel):
         self.loss_function = CrossEntropyLoss()
         self.max_seq_length = model_configs['max_seq_length']
 
-        self.apply(self.init_weights)
+        self.init_weights()
 
     def forward(self, input_ids, segment_ids, input_mask):
 
