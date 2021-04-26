@@ -108,9 +108,9 @@ class Trainer(object):
 				if iter_variable > self.train_count:
 					iter_variable = self.train_count
 
-				te = time.time()
-				sys.stdout.write('Epoch {0}/{1}: {2}/{3}\r  Time cost:{4}'.format(epoch+1, self.nb_epoch,
-							iter_variable, self.train_count, te - ts))
+
+				sys.stdout.write('Epoch {0}/{1}: {2}/{3}\r '.format(epoch+1, self.nb_epoch,
+							iter_variable, self.train_count))
 			# early stopping
 			self.model.eval()
 			with torch.no_grad():
@@ -123,8 +123,9 @@ class Trainer(object):
 					loss = self.model.loss_fn(feats, input_mask, label_ids)				
 					dev_loss += float(loss.item())
 					dev_loss_log.append(float(loss.item()))
-		
-			print('\ttrain loss: {0}, dev loss: {1}'.format(train_loss, dev_loss))
+
+			te = time.time()
+			print('\ttrain loss: {0}, dev loss: {1}, Time cost:{2}'.format(train_loss, dev_loss, (te - ts)//60))
 			# early stopping
 			if dev_loss < best_dev_loss:
 				current_patience = 0
