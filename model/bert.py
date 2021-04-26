@@ -133,7 +133,7 @@ class BertBiLSTMCRF(BertPreTrainedModel):
                             bidirectional = True)
         self.dropout = nn.Dropout(model_configs['dropout_rate'])
         self.hidden2label = nn.Linear(self.hidden_dim * 2, self.num_labels + 2)
-        self.apply(self.init_weights)
+        self.init_weights()
 
     def rand_init_hidden(self, batch_size):
         """

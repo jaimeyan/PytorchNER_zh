@@ -36,6 +36,7 @@ class Trainer(object):
 		self.configs = configs
 		self.fine_tune_dir = os.path.join(self.configs['finetune_model_dir'], model_class)
 		self.model, self.tokenizer = load_pretrain(configs, model_class, self.fine_tune_dir, processor, eval = False)
+		# self.model = torch.nn.DataParallel(self.model, device_ids=[0,1])      # 2块gpu
 		self.model.to(self.device)
 
 		self.configs = configs
