@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 import random
 import numpy as np
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler
+import time
 
 from train.device import check_cuda
 from train.pretrain import load_pretrain
@@ -77,6 +78,7 @@ class Trainer(object):
 
 		best_dev_loss = 1.e8
 		current_patience = 0
+		ts = time.time()
 		for epoch in range(self.nb_epoch):
 
 			torch.cuda.empty_cache()
@@ -104,8 +106,10 @@ class Trainer(object):
 				iter_variable += self.batch_size
 				if iter_variable > self.train_count:
 					iter_variable = self.train_count
-				sys.stdout.write('Epoch {0}/{1}: {2}/{3}\r'.format(epoch+1, self.nb_epoch, 
-							iter_variable, self.train_count))
+
+				te = time.time()
+				sys.stdout.write('Epoch {0}/{1}: {2}/{3}\r  Time cost:{4}'.format(epoch+1, self.nb_epoch,
+							iter_variable, self.train_count, te - ts))
 			# early stopping
 			self.model.eval()
 			with torch.no_grad():

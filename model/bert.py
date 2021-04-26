@@ -79,7 +79,7 @@ class BertCRF(BertPreTrainedModel):
         self.hidden_dim = config.hidden_size
         self.dropout = nn.Dropout(model_configs['dropout_rate'])
         self.hidden2label = nn.Linear(self.hidden_dim, self.num_labels + 2)
-        self.apply(self.init_weights)
+        self.init_weights()
 
     def forward(self, input_ids, segment_ids, input_mask):
 

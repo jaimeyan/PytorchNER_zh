@@ -43,7 +43,7 @@ lr_decay: 0.05
 # epoch
 batch_size: 12
 nb_epoch: 15
-save_checkpoint: False
+save_checkpoint: True
 average_batch: False
 
 # early stopping

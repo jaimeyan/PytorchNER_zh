@@ -13,7 +13,7 @@ output_dir: ./tmp/outputs/
 
 # pretrain
 use_pretrained_embedding: True
-pretrain_embed_file: ../pretrained/sgns.baidubaike.bigram-char/sgns.baidubaike.bigram-char
+pretrain_embed_file: ./pretrained/sgns.baidubaike.bigram-char/sgns.baidubaike.bigram-char
 pretrain_embed_pkl: ./tmp/outputs/pretrain_word_embeddings.pkl
 requires_grad: True
 
