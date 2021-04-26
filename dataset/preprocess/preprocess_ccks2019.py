@@ -5,7 +5,7 @@ import os
 import math
 import random
 import numpy as np
-
+from utils.datautils import check_dir
 from collections import Counter
 
 class CCKS2019NER(object):
