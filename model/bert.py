@@ -105,7 +105,7 @@ class BertCRF(BertPreTrainedModel):
 
     def predict(self, feats, mask):
 
-        path_score, best_path = self.crf(feats, mask.byte())
+        path_score, best_path = self.crf(feats, mask.bool())
         return best_path
 
 class BertBiLSTMCRF(BertPreTrainedModel):
@@ -178,5 +178,5 @@ class BertBiLSTMCRF(BertPreTrainedModel):
 
     def predict(self, feats, mask):
 
-        path_score, best_path = self.crf(feats, mask.byte())
+        path_score, best_path = self.crf(feats, mask.bool())
         return best_path

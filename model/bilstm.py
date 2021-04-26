@@ -111,5 +111,5 @@ class BiLSTMCRF(BaseModel):
 
     def predict(self, feats, mask):
 
-        path_score, best_path = self.crf(feats, mask.byte())
+        path_score, best_path = self.crf(feats, mask.bool())
         return best_path
