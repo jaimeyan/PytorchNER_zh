@@ -5,7 +5,7 @@ dataset: ccks2019
 
 # 数据相关参数
 data_path: ./data/ccks2019/
-txt_path: ../dataset/yidu-s4k/
+txt_path: ./dataset/yidu-s4k/
 label_file: ./data/ccks2019/conll.txt  
 
 label:

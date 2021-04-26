@@ -8,7 +8,7 @@ model_class: [BiLSTM, BiLSTMCRF]
 # path
 data_dir: ./data/
 finetune_model_dir: ./tmp/models/
-pretrained_model_dir: ../pretrained/chinese_wwm_ext_pytorch
+pretrained_model_dir: ./pretrained/chinese_wwm_ext_pytorch
 output_dir: ./tmp/outputs/
 
 # pretrain
