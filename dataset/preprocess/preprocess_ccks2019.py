@@ -34,14 +34,14 @@ class CCKS2019NER(object):
     def txtloader(self):
         self.originalText = {}
         self.entities = {}
-        with open(os.path.join(self.configs['txt_path'], 'subtask1_training_part1.txt'), 'r', encoding = 'utf-8') as f:
+        with open(os.path.join(self.configs['txt_path'], 'subtask1_training_part1_.txt'), 'r', encoding = 'utf-8') as f:
             i = 0
             for line in f:
                 self.originalText[i] = eval(line)['originalText']
                 self.entities[i] = eval(line)['entities']
                 i += 1
         f.close()
-        with open(os.path.join(self.configs['txt_path'], 'subtask1_training_part2.txt'), 'r', encoding = 'utf-8') as f:
+        with open(os.path.join(self.configs['txt_path'], 'subtask1_training_part2_.txt'), 'r', encoding = 'utf-8') as f:
             for line in f:
                 self.originalText[i] = eval(line)['originalText']
                 self.entities[i] = eval(line)['entities']
