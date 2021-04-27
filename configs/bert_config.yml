@@ -6,7 +6,7 @@
 
 # global
 name: bert-pytorch
-model_class: [Bert] #[Bert, BertCRF, BertBiLSTMCRF]
+model_class: [BertCRF] #[Bert, BertCRF, BertBiLSTMCRF]
 
 # path
 data_dir: ./data/
@@ -32,22 +32,22 @@ lower_case: True
 
 # optimizer
 optimizer_type: adamw
-learning_rate: 0.0001
+learning_rate: 0.01
 warmup_proportion: 0.1
 max_grad_norm: 1.0
-weight_decay: 0.00005
+weight_decay: 0.0005
 l2_rate: 1.0e-8
 momentum: 0.
-lr_decay: 0.00001
+lr_decay: 0.0001
 
 # epoch
-batch_size: 32
+batch_size: 50
 nb_epoch: 50
 save_checkpoint: True
 average_batch: False
 
 # early stopping
-max_patience: 5
+max_patience: 10
 
 # rnn
 bert_embedding: 768
