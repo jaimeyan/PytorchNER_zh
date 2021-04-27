@@ -109,8 +109,8 @@ class Trainer(object):
 					iter_variable = self.train_count
 
 
-				sys.stdout.write('Epoch {0}/{1}: {2}/{3} , training loss: {4}\r'.format(epoch+1, self.nb_epoch,
-							iter_variable, self.train_count, train_loss))
+				sys.stdout.write('Epoch {0}/{1}: {2}/{3} , training loss(batch): {4}, training loss(sum): {5}\r'.format(epoch+1, self.nb_epoch,
+							iter_variable, self.train_count, float(loss.item()), train_loss))
 			# early stopping
 			self.model.eval()
 			with torch.no_grad():
