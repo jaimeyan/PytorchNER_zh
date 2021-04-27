@@ -1,5 +1,7 @@
 
 # coding: utf-8
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning)
 
 import os
 from configs.confighelper import config_loader, args_parser
