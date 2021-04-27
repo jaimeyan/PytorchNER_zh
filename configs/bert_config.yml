@@ -25,20 +25,20 @@ use_cuda: True
 gpu_memory: 8192
 
 # model
-dropout_rate: 0.5
+dropout_rate: 0.1
 random_seed: 1301
 max_seq_length: 256
 lower_case: True
 
 # optimizer
 optimizer_type: adamw
-learning_rate: 0.01
+learning_rate: 0.001
 warmup_proportion: 0.1
 max_grad_norm: 1.0
-weight_decay: 0.0005
+weight_decay: 0.00005
 l2_rate: 1.0e-8
 momentum: 0.
-lr_decay: 0.0001
+lr_decay: 0.00001
 
 # epoch
 batch_size: 50
