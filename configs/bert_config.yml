@@ -6,7 +6,7 @@
 
 # global
 name: bert-pytorch
-model_class: [BertCRF] #[Bert, BertCRF, BertBiLSTMCRF]
+model_class: [Bert, BertCRF, BertBiLSTMCRF]
 
 # path
 data_dir: ./data/
