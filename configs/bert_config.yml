@@ -47,7 +47,7 @@ save_checkpoint: True
 average_batch: False
 
 # early stopping
-max_patience: 10
+max_patience: 5
 
 # rnn
 bert_embedding: 768
