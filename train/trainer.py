@@ -125,7 +125,7 @@ class Trainer(object):
 					dev_loss_log.append(float(loss.item()))
 
 			te = time.time()
-			print('\ttrain loss: {0}, dev loss: {1}, Time cost:{2}'.format(train_loss, dev_loss, (te - ts)//60))
+			print('\ttrain loss: {0}, dev loss: {1}, Time cost:{2} mins'.format(train_loss, dev_loss, (te - ts)//60))
 			# early stopping
 			if dev_loss < best_dev_loss:
 				current_patience = 0

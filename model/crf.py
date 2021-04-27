@@ -1,9 +1,9 @@
-
 # coding=utf-8
 import torch
 from torch.autograd import Variable
 import torch.nn as nn
 import torch.nn.functional as F
+
 
 def log_sum_exp(vec, m_size):
     """
@@ -34,7 +34,7 @@ class CRF(nn.Module):
             self.__setattr__(k, kwargs[k])
         self.START_TAG_IDX, self.END_TAG_IDX = -2, -1
         # +2 是因为tag比初始的Label_tag多了start_tag和end_tag
-        init_transitions = torch.zeros(self.target_size+2, self.target_size+2)
+        init_transitions = torch.zeros(self.target_size + 2, self.target_size + 2)
         # These two statements enforce the constraint that we never transfer
         # to the start tag and we never transfer from the stop tag
         init_transitions[:, self.START_TAG_IDX] = -1000.
@@ -84,7 +84,7 @@ class CRF(nn.Module):
                 partition.masked_scatter_(mask_idx.bool(), masked_cur_partition)
         cur_values = self.transitions.view(1, tag_size, tag_size).expand(
             batch_size, tag_size, tag_size) + partition.contiguous().view(
-                batch_size, tag_size, 1).expand(batch_size, tag_size, tag_size)
+            batch_size, tag_size, 1).expand(batch_size, tag_size, tag_size)
         cur_partition = log_sum_exp(cur_values, tag_size)
         final_partition = cur_partition[:, self.END_TAG_IDX]
         return final_partition.sum(), scores
@@ -142,7 +142,7 @@ class CRF(nn.Module):
             partition_history, 1, last_position).view(batch_size, tag_size, 1)
 
         last_values = last_partition.expand(batch_size, tag_size, tag_size) + \
-            self.transitions.view(1, tag_size, tag_size).expand(batch_size, tag_size, tag_size)
+                      self.transitions.view(1, tag_size, tag_size).expand(batch_size, tag_size, tag_size)
         _, last_bp = torch.max(last_values, 1)
         pad_zero = Variable(torch.zeros(batch_size, tag_size)).long()
         if self.use_cuda:
@@ -162,7 +162,7 @@ class CRF(nn.Module):
         if self.use_cuda:
             decode_idx = decode_idx.cuda()
         decode_idx[-1] = pointer.data
-        for idx in range(len(back_points)-2, -1, -1):
+        for idx in range(len(back_points) - 2, -1, -1):
             pointer = torch.gather(back_points[idx], 1, pointer.contiguous().view(batch_size, 1))
             decode_idx[idx] = pointer.view(-1).data
         path_score = None
@@ -194,12 +194,12 @@ class CRF(nn.Module):
             if idx == 0:
                 new_tags[:, 0] = (tag_size - 2) * tag_size + tags[:, 0]
             else:
-                new_tags[:, idx] = tags[:, idx-1] * tag_size + tags[:, idx]
+                new_tags[:, idx] = tags[:, idx - 1] * tag_size + tags[:, idx]
 
         end_transition = self.transitions[:, self.END_TAG_IDX].contiguous().view(
             1, tag_size).expand(batch_size, tag_size)
         length_mask = torch.sum(mask, dim=1).view(batch_size, 1).long()
-        end_ids = torch.gather(tags, 1, length_mask-1)
+        end_ids = torch.gather(tags, 1, length_mask - 1)
 
         end_energy = torch.gather(end_transition, 1, end_ids)
 
@@ -220,7 +220,7 @@ class CRF(nn.Module):
             tags: size=(batch_size, seq_len)
         """
         batch_size = feats.size(0)
-        mask = mask.bool()
+        mask = mask.byte()
         forward_score, scores = self._forward_alg(feats, mask)
         gold_score = self._score_sentence(scores, mask, tags)
         if self.average_batch:
