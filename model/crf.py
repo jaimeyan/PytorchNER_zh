@@ -225,4 +225,4 @@ class CRF(nn.Module):
         gold_score = self._score_sentence(scores, mask, tags)
         if self.average_batch:
             return (forward_score - gold_score) / batch_size
-        return (forward_score - gold_score)/mask.float().sum()
+        return forward_score - gold_score
