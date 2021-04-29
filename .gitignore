@@ -11,3 +11,5 @@ papers/
 runs/
 .vscode/
 tmp/
+pretrained/
+dataset/
